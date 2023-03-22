@@ -6,7 +6,7 @@
   }
 
   .spinning-logo {
-    animation: spin 50s linear infinite;
+    animation: spin 25s linear infinite;    
     transform-origin: center;
     
   }
