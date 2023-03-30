@@ -5,7 +5,7 @@ import dash
 app = Dash(__name__, use_pages=True,
 	   meta_tags=[
         {"name": "viewport", "content": "width=device-width, initial-scale=1"}],
-	    external_stylesheets=[dbc.themes.SOLAR]
+	    external_stylesheets=[dbc.themes.YETI]
 	)
 
 
@@ -13,79 +13,28 @@ app = Dash(__name__, use_pages=True,
 header = html.Div([
 	
     html.Div([
-        html.Img(src='assets/solo-logo2.png', style={'height' : '80px'},
+        html.Img(src='assets/solo-logo2.png', style={'height' : '30px'},
 		  className='spinning-logo'),
-        html.Img(src='assets/solo-name2.png', style={'height' : '100px', 'padding-left':'20px'}, )], 
-	    style={'padding-top':'10px'})
+        html.Img(src='assets/solo-name2.png', style={'height' : '30px', 'padding-left':'20px'}, )], 
+	    style={'padding-top':'2px'})
 		 ,
 		 
 	html.H2('Insight View',	 
-	    style={'font-size': '25px', 'color':'rgb(64, 130, 126)'}),
+	    style={'font-size': '15px', 'color':'rgb(64, 130, 126)', 'padding-left' : '50px'}),
 	
-	], id='header')
-    
+	], id='header')   
+
 	
 
-sidebar_header = dbc.Row(
-    [
-        dbc.Col(html.H3("Q1App", className="display-4")),
-        dbc.Col(
-            [
-                html.Button(
-                    # use the Bootstrap navbar-toggler classes to style
-                    html.Span(className="navbar-toggler-icon"),
-                    className="navbar-toggler",
-                    # the navbar-toggler classes don't set color
-                    style={
-                        "color": "rgba(0,0,0,.5)",
-                        "border-color": "rgba(0,0,0,.1)",
-                    },
-                    id="navbar-toggle",
-                ),
-                html.Button(
-                    # use the Bootstrap navbar-toggler classes to style
-                    html.Span(className="navbar-toggler-icon"),
-                    className="navbar-toggler",
-                    # the navbar-toggler classes don't set color
-                    style={
-                        "color": "rgba(0,0,0,.5)",
-                        "border-color": "rgba(0,0,0,.1)",
-                    },
-                    id="sidebar-toggle",
-                ),
-            ],
-            # the column containing the toggle will be only as wide as the
-            # toggle, resulting in the toggle being right aligned
-            width="auto",
-            # vertically align the toggle in the center
-            align="center",
-        ),
+sidebar1 = dbc.Navbar(
+	dbc.Nav(
+	[
+	dbc.NavLink('Home', href="/", active='exact'),
+	dbc.NavLink('Dashboard', href="/dashboard", active='exact'),
+	dbc.NavItem(header)
     ]
+    ), id='sidebar1', class_name="navbar navbar-expand-lg navbar-dark bg-dark"
 )
-
-	
-
-sidebar = html.Div(
-    [
-        sidebar_header,
-        # we wrap the horizontal rule and short blurb in a div that can be
-        # hidden on a small screen
-        html.Div(
-            
-            html.Hr(),),
-
-
-        dbc.Nav([    
-                
-            dbc.NavItem(
-                dcc.Link(
-                    f"{page['name']} ", href=page["relative_path"]
-                        )
-                    )
-                        for page in dash.page_registry.values()   
-
-            
-        ], vertical=True, pills = True, )], id='sidebar') 
 
 
 
@@ -94,9 +43,8 @@ sidebar = html.Div(
 content= html.Div(dash.page_container, id='page-content', style={ 'lenght':'100%', 'bottom' :'0'})
 
 
-app.layout=html.Div(html.Div([sidebar, 
-			      html.Div([header, content], style={'width':'100%'})], 
-		  style={'display':'flex'}), id='page')
+app.layout=html.Div([sidebar1, content, ], 
+		  style={'display':'100%'}, id='page')
 
 if __name__ == '__main__':
 	app.run_server(debug=True)
