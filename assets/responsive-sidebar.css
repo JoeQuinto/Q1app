@@ -1,75 +1,96 @@
+.spinning-logo {
+  animation: spin 25s linear infinite;    
+  transform-origin: center;
+  
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.logo-name {
+  height: 2rem !important;
+  
+}
 
 
-  .spinning-logo {
-    animation: spin 25s linear infinite;    
-    transform-origin: center;
-    
-  }
+body{
+  position: relative;
+  left:0;
+  right:0;
+  top:0;
+  bottom: 0;   
   
-  @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+  background-color: rgb(200, 251, 235);
+  animation-name: example;
+  animation-duration: 8s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;;
+}
+@keyframes example {
+  0% {background-color: rgb(200, 251, 235);}
+  50% {background-color: rgba(95, 19, 154, 0.432);}
+  100% {background-color: rgb(200, 251, 235);}
+}
+
+#content {
+  margin-left : 2rem !important;
+  margin-top: 3rem;
+  margin-right: 2rem !important;
+}
+
+/* Media query for screens larger than 48em */
+@media (min-width: 48em) {
+  /* Adjust styles for larger screens */
+
+  /* Set margins of the main content so that it doesn't overlap the sidebar */
+  #content {
+    margin-left: 5rem;
+    margin-right: 2rem;
+    transition: margin-left 0.3s ease-in-out;
+  }
+}
+
+/* Media query for screens smaller than 48em */
+@media (max-width: 48em) {
+  /* Adjust styles for smaller screens */
+
+  /* Reset margins of the main content to fit the screen */
+  #content {
+    margin-left: 1rem;
+    margin-right: 1rem;
+    transition: margin-left 0.3s ease-in-out;
   }
 
-  #page {
-    position: fixed;
-    left:0;
-    right:0;
-    top:0;
-    bottom: 0;
-    
-    background-color: aliceblue !important;
-  }
-  
-  
-  
-  /* Hide the blurb on a small screen */
+  /* Show the blurb */
   #blurb {
-    display: none;
-  }
-  
-  #sidebar-toggle {
-    display: none;
-  }
-  
-  #collapse *:first-child {
-    margin-top: 1rem;
-  }
-  
-  /* add the three horizontal bars icon for the toggle */
-  
-  
-  #page-content {
-    padding: 1rem 1rem;
+    display: block;
   }
 
- 
-  
-  @media (min-width: 48em) {
+  .header {
+    height: auto;
+    right: 0 !important;
+  }
+
+
+}
+
+/* Media query for screens smaller than 30em */
+@media (max-width: 30em) {
+  /* Adjust styles for even smaller screens, such as phone screens */
+
+  /* Shrink the spinning logo */
+  .spinning-logo {
     
-  
-  
-    /* set margins of the main content so that it doesn't overlap the sidebar */
-    #page-content {
-      margin-left: 2rem;
-      margin-right: 2rem;
-      transition: margin-left 0.3s ease-in-out;
-      bottom: 0
-    }
+    height: 1px;
+  }
 
-    #header {
-        margin-left : 27rem;
-        transition: margin-left 0.3s ease-in-out;
-        padding-top: 2px;
-        
-      }
-
-    #header {
-        
-        font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        color: #b7fddb
-    }
-
-    
+  .logo-name {
+    height : 5px;
 
   }
+
+
+}
+

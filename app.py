@@ -8,43 +8,58 @@ app = Dash(__name__, use_pages=True,
 	    external_stylesheets=[dbc.themes.YETI]
 	)
 
-
-
 header = html.Div([
 	
     html.Div([
-        html.Img(src='assets/solo-logo2.png', style={'height' : '30px'},
+        html.Img(src='assets/solo-logo2.png', style={'height' : '2.5rem', "padding-top": "0.2rem"},
 		  className='spinning-logo'),
-        html.Img(src='assets/solo-name2.png', style={'height' : '30px', 'padding-left':'20px'}, )], 
-	    style={'padding-top':'2px'})
+        html.Img(src='assets/solo-name2.png', style={ 'padding-left':'0.7rem', 'margin-top': '2rem !important'},
+		 className='logo-name' )], 
+	    )
 		 ,
 		 
 	html.H2('Insight View',	 
-	    style={'font-size': '15px', 'color':'rgb(64, 130, 126)', 'padding-left' : '50px'}),
+	    style={'font-size': '0.8rem', 'color':'rgb(64, 130, 126)', 'padding-left' : '4rem'}),
 	
 	], id='header')   
 
 	
 
-sidebar1 = dbc.Navbar(
-	dbc.Nav(
-	[
-	dbc.NavLink('Home', href="/", active='exact'),
-	dbc.NavLink('Dashboard', href="/dashboard", active='exact'),
-	dbc.NavItem(header)
-    ]
-    ), id='sidebar1', class_name="navbar navbar-expand-lg navbar-dark bg-dark"
-)
+navbar = dbc.Navbar(
+				dbc.Nav(
+					[
+						dbc.Col(
+							dbc.NavItem(header, style={ 'display':'flex', "margin":"auto"}),
+							width={"width":"33%", "order": "2"},
+							style={ 'display':'flex', "margin":"auto"},
+						),
+						dbc.Col(
+							[
+								dbc.NavLink("Home", href="/", active="exact"),
+								dbc.NavLink("Dashboard", href="/dashboard", active="exact"),
+								dbc.NavLink("About", href="/about", active="exact"),
+							],
+							width={"size": "auto", "order": "1"},
+							style={"width":"33%", "display":"flex"},
+						),
+						dbc.Col(
+							html.Br(),
+							style={"width":"33%", "order":"3"}
+						)
+					], 
+					
+					style={"display": "flex", "width":"100%", "height":"3.1rem" }					
+				),
+
+				id="navbar",
+				className="navbar navbar-expand-lg navbar-dark bg-dark",
+				style={"display": "flex", "flex-direction": "row" }
+			)
+
+content= html.Div(dash.page_container, style={ 'lenght':'100%', 'bottom' :'0'}, id='content')
 
 
-
-
-
-content= html.Div(dash.page_container, id='page-content', style={ 'lenght':'100%', 'bottom' :'0'})
-
-
-app.layout=html.Div([sidebar1, content, ], 
-		  style={'display':'100%'}, id='page')
+app.layout=html.Div([navbar, content], id='page')
 
 if __name__ == '__main__':
 	app.run_server(debug=True)
