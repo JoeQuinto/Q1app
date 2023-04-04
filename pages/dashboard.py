@@ -21,3 +21,6 @@ layout = html.Div([
      
 ], style={"display":"flex"})
 
+
+
+
