@@ -5,7 +5,7 @@ import dash
 app = Dash(__name__, use_pages=True,
 	   meta_tags=[
         {"name": "viewport", "content": "width=device-width, initial-scale=1"}],
-	    external_stylesheets=[dbc.themes.YETI]
+	    external_stylesheets=[dbc.themes.YETI], suppress_callback_exceptions=True
 	)
 
 header = html.Div([
@@ -56,7 +56,7 @@ navbar = dbc.Navbar(
 				style={"display": "flex", "flex-direction": "row" }
 			)
 
-content= html.Div(dash.page_container, style={ 'lenght':'100%', 'bottom' :'0'}, id='content')
+content= html.Div(dash.page_container, id='content')
 
 
 app.layout=html.Div([navbar, content], id='page')
